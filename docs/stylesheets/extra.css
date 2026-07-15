@@ -1,0 +1,327 @@
+/* Umeo Help & Onboarding — email gate, feedback widget, tables. */
+
+/* ---- language selector in the header --------------------------------------- */
+
+.hc-lang {
+  margin-left: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  font: inherit;
+  font-size: 0.7rem;
+  color: inherit;
+  background: transparent;
+  border: 1px solid currentcolor;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.hc-lang option {
+  color: initial;
+  background: var(--md-default-bg-color, #fff);
+}
+
+/* ---- sidebar entries of non-active languages -------------------------------- */
+
+.md-nav__item.hc-lang-hidden {
+  display: none !important;
+}
+
+/* ---- anonymous state: nav visible but dimmed until an email is entered ----
+   Clicks on nav links are intercepted by app.js and open the email dialog. */
+
+html.hc-anon .md-sidebar--primary .md-nav__link,
+html.hc-anon .md-footer__inner {
+  opacity: 0.55;
+}
+
+/* ---- inline email box on the welcome page --------------------------------- */
+
+.hc-welcome-box {
+  max-width: 30rem;
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.3rem 1.3rem;
+  border: 1px solid var(--md-default-fg-color--lighter, #c6c9ce);
+  border-left: 0.2rem solid var(--md-primary-fg-color, #4051b5);
+  border-radius: 0.4rem;
+  background: var(--md-code-bg-color, #f6f7f8);
+}
+
+.hc-welcome-box h3 {
+  margin: 0 0 0.6rem;
+}
+
+/* ---- email gate overlay -------------------------------------------------- */
+
+html.hc-locked body > *:not(.hc-overlay) {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hc-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(20, 22, 27, 0.45);
+}
+
+.hc-card {
+  max-width: 26rem;
+  width: 100%;
+  padding: 1.6rem 1.8rem;
+  border-radius: 0.6rem;
+  background: var(--md-default-bg-color, #fff);
+  color: var(--md-default-fg-color, #1c1e21);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hc-card h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.hc-card p {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.hc-gate-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.hc-gate-form input,
+.hc-admin-form input,
+.hc-widget__comment {
+  flex: 1;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-size: 0.75rem;
+  color: inherit;
+  background: var(--md-default-bg-color, #fff);
+  border: 1px solid var(--md-default-fg-color--lighter, #c6c9ce);
+  border-radius: 0.3rem;
+}
+
+.hc-gate-form input:focus,
+.hc-admin-form input:focus,
+.hc-widget__comment:focus {
+  outline: 2px solid var(--md-accent-fg-color, #4051b5);
+  outline-offset: 1px;
+}
+
+/* ---- buttons -------------------------------------------------------------- */
+
+.hc-btn {
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--md-default-fg-color--lighter, #c6c9ce);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.hc-btn:hover {
+  border-color: var(--md-accent-fg-color, #4051b5);
+}
+
+.hc-btn--primary {
+  color: #fff;
+  background: var(--md-primary-fg-color, #4051b5);
+  border-color: var(--md-primary-fg-color, #4051b5);
+}
+
+.hc-btn--primary:hover {
+  filter: brightness(1.12);
+}
+
+.hc-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---- user chip ------------------------------------------------------------ */
+
+.hc-chip {
+  position: fixed;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.4rem 0.35rem 0.8rem;
+  font-size: 0.68rem;
+  background: var(--md-default-bg-color, #fff);
+  color: var(--md-default-fg-color, #1c1e21);
+  border: 1px solid var(--md-default-fg-color--lighter, #c6c9ce);
+  border-radius: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.hc-chip__email {
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hc-chip__switch {
+  padding: 0.25rem 0.7rem;
+  font: inherit;
+  font-size: 0.65rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  background: var(--md-default-fg-color--lightest, #eceef1);
+  color: inherit;
+}
+
+.hc-chip__switch:hover {
+  background: var(--md-accent-fg-color, #4051b5);
+  color: #fff;
+}
+
+/* ---- feedback widget ------------------------------------------------------ */
+
+.hc-widget {
+  margin-top: 1rem;
+  padding: 1.1rem 1.3rem 1.3rem;
+  border: 1px solid var(--md-default-fg-color--lighter, #c6c9ce);
+  border-left: 0.2rem solid var(--md-primary-fg-color, #4051b5);
+  border-radius: 0.4rem;
+  background: var(--md-code-bg-color, #f6f7f8);
+}
+
+.hc-widget h3 {
+  margin: 0 0 0.4rem;
+}
+
+.hc-widget__question {
+  margin: 0 0 0.6rem;
+  font-weight: 600;
+}
+
+.hc-widget__choices {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.hc-choice--selected {
+  background: var(--md-primary-fg-color, #4051b5);
+  border-color: var(--md-primary-fg-color, #4051b5);
+  color: #fff;
+}
+
+.hc-widget__comment {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  margin-bottom: 0.8rem;
+}
+
+.hc-widget__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.hc-widget__status {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+/* ---- tables (progress + admin) -------------------------------------------- */
+
+.hc-summary {
+  font-size: 0.75rem;
+}
+
+.hc-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.2rem;
+}
+
+.hc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+}
+
+.hc-table th,
+.hc-table td {
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest, #e3e5e8);
+}
+
+.hc-table th {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---- badges ---------------------------------------------------------------- */
+
+.hc-badge {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.hc-badge--not-started {
+  background: var(--md-default-fg-color--lightest, #eceef1);
+  color: var(--md-default-fg-color--light, #5f6368);
+}
+
+.hc-badge--viewed {
+  background: #fff3cd;
+  color: #7a5d00;
+}
+
+.hc-badge--completed {
+  background: #d7f5dd;
+  color: #14652a;
+}
+
+[data-md-color-scheme="slate"] .hc-badge--viewed {
+  background: #4a3f13;
+  color: #ffdf70;
+}
+
+[data-md-color-scheme="slate"] .hc-badge--completed {
+  background: #143d1f;
+  color: #7fe39a;
+}
+
+/* ---- admin form ------------------------------------------------------------- */
+
+.hc-admin-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 26rem;
+  margin-bottom: 1rem;
+}
+
+.hc-error {
+  color: #c62828;
+  font-size: 0.72rem;
+}
+
+[data-md-color-scheme="slate"] .hc-error {
+  color: #ff8a80;
+}
