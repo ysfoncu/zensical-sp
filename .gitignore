@@ -3,5 +3,4 @@ site/
 .cache/
 .claude/
 .DS_Store
-infra/.admin-key
-infra/lambda/function.zip
+infra/
