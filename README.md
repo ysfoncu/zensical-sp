@@ -1,4 +1,4 @@
-# MOSO Help & Onboarding Center
+# StudentPlacement Help & Onboarding Center
 
 A help and onboarding site built with [Zensical](https://zensical.org/).
 The welcome page is public and shows how the site works; entering an email

@@ -2,9 +2,9 @@
 title: Welcome
 ---
 
-# MOSO Help & Onboarding Center
+# StudentPlacement Help & Onboarding Center
 
-Welcome! This site walks you through the **MOSO test scenarios** step by step,
+Welcome! This site walks you through the **StudentPlacement test scenarios** step by step,
 with screenshots for every stage.
 
 ## How it works

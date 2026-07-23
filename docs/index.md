@@ -1,8 +1,8 @@
 ---
-title: MOSO Help & Onboarding
+title: StudentPlacement Help & Onboarding
 ---
 
-# MOSO Help & Onboarding Center
+# StudentPlacement Help & Onboarding Center
 
 <div id="hc-lang-redirect"></div>
 

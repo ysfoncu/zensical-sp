@@ -2,9 +2,9 @@
 title: Välkommen
 ---
 
-# MOSO hjälp- och onboardingcenter
+# StudentPlacement hjälp- och onboardingcenter
 
-Välkommen! Den här webbplatsen guidar dig genom **MOSO-testscenarierna** steg för steg,
+Välkommen! Den här webbplatsen guidar dig genom **StudentPlacement-testscenarierna** steg för steg,
 med skärmbilder för varje moment.
 
 ## Så fungerar det

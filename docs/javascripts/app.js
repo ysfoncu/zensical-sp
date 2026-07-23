@@ -1,4 +1,4 @@
-// MOSO Help & Onboarding — email gate, progress tracking, feedback, i18n.
+// StudentPlacement Help & Onboarding — email gate, progress tracking, feedback, i18n.
 //
 // Loaded as an ES module on every page (see zensical.toml). Talks to the
 // Lambda + DynamoDB tracking API configured in config.js.
@@ -25,6 +25,16 @@ const LANG_KEY = "hc:lang";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const LANGS = { en: "English", nb: "Norsk bokmål", sv: "Svenska" };
+
+// must match [project] site_name in zensical.toml — the value Zensical bakes
+// into the built HTML (page title, header logo, nav drawer) at build time
+const SITE_NAME = "StudentPlacement Help & Onboarding";
+
+const HEADER_TITLE = {
+  en: "StudentPlacement Help & Onboarding",
+  nb: "StudentPlacement Hjelp og opplæring",
+  sv: "StudentPlacement Hjälp och introduktion",
+};
 
 const STR = {
   en: {
@@ -158,6 +168,30 @@ function switchLanguage(lang) {
   } else {
     location.href = SITE_ROOT.pathname + lang + "/";
   }
+}
+
+// site_name is static HTML baked in at build time (page title, header logo,
+// nav drawer logo/label), so switching the displayed title per language
+// means rewriting those spots on load — there's no live re-render since
+// switchLanguage() does a full page navigation anyway.
+function applyHeaderTitle(lang) {
+  const title = HEADER_TITLE[lang] || HEADER_TITLE.en;
+  if (title === SITE_NAME) return;
+
+  document.title = document.title.split(SITE_NAME).join(title);
+
+  document.querySelectorAll('[data-md-component="logo"]').forEach((logo) => {
+    logo.title = title;
+    logo.setAttribute("aria-label", title);
+  });
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.nodeValue.trim() === SITE_NAME) textNodes.push(node);
+  }
+  textNodes.forEach((n) => { n.nodeValue = n.nodeValue.replace(SITE_NAME, title); });
 }
 
 function injectLangDropdown(lang) {
@@ -618,6 +652,7 @@ function main() {
     return;
   }
 
+  applyHeaderTitle(lang);
   injectLangDropdown(lang);
   filterNavByLang(lang);
 
